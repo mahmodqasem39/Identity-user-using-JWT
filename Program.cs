@@ -1,4 +1,8 @@
 
+using JWT.EF;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+
 namespace JWT
 {
     public class Program
@@ -13,8 +17,13 @@ namespace JWT
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            var connectionString = builder.Configuration.GetConnectionString("DbConnectionString");
 
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                                options.UseSqlServer(connectionString));
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
