@@ -13,6 +13,12 @@ namespace JWT.EF
         [Column("userName")]
         [StringLength(50)]
         public string? UserName { get; set; }
+        [Column("Email")]
+        [StringLength(50)]
+        public string? Email { get; set; }
+        [Column("PasswordSalt")]
+        [StringLength(4000)]
+        public string? PasswordSalt { get; set; }
         [Column("HashedPassword")]
         [StringLength(4000)]
         public string? HashedPassword { get; set; }

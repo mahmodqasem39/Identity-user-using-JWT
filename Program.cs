@@ -1,6 +1,9 @@
 
 using JWT.EF;
+using JWT.Services;
+using JWT.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
 
 namespace JWT
@@ -18,9 +21,12 @@ namespace JWT
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             var connectionString = builder.Configuration.GetConnectionString("DbConnectionString");
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                                 options.UseSqlServer(connectionString));
+            builder.Services.AddScoped<IUserService, UserService>();
+
             var app = builder.Build();
 
 
