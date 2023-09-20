@@ -4,6 +4,8 @@ namespace JWT.Services
 {
     public interface IUserService
     {
-        Task<RegisterModel> Register(RegisterModel resource, CancellationToken cancellationToken);
+        Task<UserModel> Register(RegisterModel resource, CancellationToken cancellationToken);
+        Task<LoginResponse> Login(LoginModel resource, CancellationToken cancellationToken);
+
     }
 }

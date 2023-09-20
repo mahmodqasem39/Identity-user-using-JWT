@@ -30,5 +30,19 @@ namespace JWT.Controllers
             }
         }
 
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel resource, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var response = await _userService.Login(resource, cancellationToken);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { ErrorMessage = e.Message });
+            }
+        }
     }
 }

@@ -5,7 +5,8 @@ namespace JWT.Utilities
 {
     public static class PasswordHasher
     {
-        public static string ComputeHash(string password, string salt, string pepper, int iteration)
+        private static string pepper = "Pas5pr@se";
+        public static string ComputeHash(string password, string salt, int iteration)
         {
             if (iteration <= 0) return password;
 
@@ -14,7 +15,7 @@ namespace JWT.Utilities
             var byteValue = Encoding.UTF8.GetBytes(passwordSaltPepper);
             var byteHash = sha256.ComputeHash(byteValue);
             var hash = Convert.ToBase64String(byteHash);
-            return ComputeHash(hash, salt, pepper, iteration - 1);
+            return ComputeHash(hash, salt, iteration - 1);
         }
 
         public static string GenerateSalt()

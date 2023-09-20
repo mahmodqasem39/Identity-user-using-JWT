@@ -8,6 +8,7 @@ namespace JWT.EF
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("userID")]
         public int UserId { get; set; }
         [Column("userName")]
