@@ -44,7 +44,8 @@ namespace JWT.Services
 
         public async Task<LoginResponse> Login(LoginModel resource, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == resource.Username);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == resource.Username) ?? 
+                                _context.Users.FirstOrDefault(x => x.Email == resource.Username);
             if (user == null)
                 throw new Exception("Invalid UserName Or Password");
 

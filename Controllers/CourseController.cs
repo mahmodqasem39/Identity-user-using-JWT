@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using JWT.Models;
+using JWT.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +10,7 @@ namespace JWT.Controllers
     [ApiController]
     public class CourseController : ControllerBase
     {
-        [Authorize]
+        [HasPermission(Permission.AccessCourse)]
         [HttpGet]
         public IActionResult Get()
         {
